@@ -1,0 +1,25 @@
+<header>
+  <button *ngIf="!isMobileDevice">
+    <img src="assets/img/menu.svg" alt="Abrir menu" width="24px" height="24px" (click)="toggleSidebar();">
+  </button>
+  <button *ngIf="isMobileDevice && !isHomePage" (click)="goBack();">
+    <img src="assets/img/arrow-back.svg" alt="Voltar">
+  </button>
+  <span></span>
+  <img class="logo" src="assets/img/utfpr-logo.svg" alt="Logo da UTFPR" height="25">
+  <button (click)="logout();">
+    <span style="display:flex;align-items: center;"><img src="assets/img/exit.svg" width="24px" height="24px" alt="Sair"></span>
+    sair
+  </button>
+</header>
+<div class="sidebar" *ngIf="!isMobileDevice" [ngClass]="{'open': isSidebarVisible}">
+  <button (click)="toggleSidebar();">
+    <img src="assets/img/close.svg" alt="Fechar menu" width="16px" height="16px">
+  </button>
+  <ul>
+    <li><a routerLink="/">Início</a></li>
+    <li><a routerLink="/details">Informações</a></li>
+    <li><a routerLink="/search">Consulta</a></li>
+    <li *ngIf="isAdmin"><a routerLink="/upload-assets">Atualizar tabela de bens</a></li>
+  </ul>
+</div>

@@ -1,0 +1,85 @@
+<app-header></app-header>
+<main *ngIf="!loading; else loadingTemplate">
+  <app-overlay [isVisible]="imageToDelete!==''">
+    <div class="overlay-content overlay-padding-top" *ngIf="!loadingOverlay; else loadingTemplateOverlay">
+      <p class="overlay-text">Tem certeza que deseja deletar essa imagem?</p>
+      <div class="buttons-bottom">
+        <button class="primary button-margin" type="button" (click)="deleteImage();">Confirmar</button>
+        <button class="secondary" type="button" (click)="cancelImageDeletion();">Cancelar</button>
+      </div>
+    </div>
+  </app-overlay>
+  <app-overlay [isVisible]="isDeletingAsset">
+    <div class="overlay-content overlay-padding-top" *ngIf="!loadingOverlay; else loadingTemplateOverlay">
+      <p class="overlay-text">Tem certeza que deseja deletar esse bem?</p>
+      <div class="buttons-bottom">
+        <button class="primary button-margin" type="button" (click)="deleteAsset();">Confirmar</button>
+        <button class="secondary" type="button" (click)="cancelAssetDeletion();">Cancelar</button>
+      </div>
+    </div>
+  </app-overlay>
+
+  <h1>Confira os dados do bem</h1>
+
+  <section *ngIf="!!asset">
+    <strong>Número do tombamento</strong>
+    <p>{{asset.assetNumber}}</p>
+
+    <strong>Descrição</strong>
+    <p>{{asset.description}}</p>
+
+    <strong>Responsável</strong>
+    <p>{{asset.responsible}}</p>
+
+    <strong>Estado de conservação</strong>
+    <p>{{asset.conservationState}}</p>
+
+    <strong>Situação</strong>
+    <p>{{asset.situation}}</p>
+
+    <strong>Local</strong>
+    <p>{{asset.place}}</p>
+
+    <br/>
+
+    <div style="display: flex; flex-direction: column;">
+      <strong>Foto da placa de patrimônio</strong>
+      <img [src]="asset.mainImage" alt="Imagem principal do bem" [ngStyle]="{'max-width': isMobileDevice ? '90vw' : '100vw'}">
+    </div>
+
+    <br/>
+
+    <div style="display: flex; flex-direction: column;">
+      <strong>Fotos do bem</strong>
+      <p *ngIf="asset.images.length === 0">Esse bem ainda não tem fotos</p>
+      <div *ngFor="let image of asset.images" class="imageContainer">
+        <img [src]="image" alt="Imagem principal do bem" [ngStyle]="{'max-width': isMobileDevice ? '90vw' : '100vw'}">
+        <button
+          type="button"
+          class="deleteImage"
+          (click)="setImageToDeletion(image);">
+          <img src="assets/img/close.svg" alt="Excluir" width="16px" height="16px">
+        </button>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="primary" type="button" (click)="updateAsset();">Atualizar bem</button>
+      <button class="delete" type="button" (click)="setAssetToDeletion();">Remover bem</button>
+    </div>
+
+  </section>
+</main>
+<app-footer></app-footer>
+
+<ng-template #loadingTemplate>
+  <main class="loading-container">
+    <img src="assets/img/load.gif" alt="Carregando" width="64px" height="64px">
+  </main>
+</ng-template>
+
+<ng-template #loadingTemplateOverlay>
+  <div class="loading-container">
+    <img src="assets/img/load.gif" alt="Carregando" width="64px" height="64px">
+  </div>
+</ng-template>

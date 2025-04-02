@@ -1,0 +1,24 @@
+<footer *ngIf="isMobileDevice" class="mobile">
+  <button (click)="goToHome();" [class]="isAtHome ? 'selected' : ''">
+    <img [src]="isAtHome ? 'assets/img/home-selected.svg' : 'assets/img/home.svg'" alt="Home" width="24px" height="24px">
+    <p>início</p>
+  </button>
+  <button (click)="goToSearch();" [class]="isAtSearch ? 'selected' : ''">
+    <img [src]="isAtSearch ? 'assets/img/search-selected.svg' : 'assets/img/search.svg'" alt="Consulta" width="24px" height="24px">
+    <p>consulta</p>
+  </button>
+  <button (click)="goToInfo();" [class]="isAtInfo ? 'selected' : ''">
+    <img [src]="isAtInfo ? 'assets/img/info-selected.svg' : 'assets/img/info.svg'" alt="Informações" width="24px" height="24px">
+    <p>info</p>
+  </button>
+</footer>
+<footer *ngIf="!isMobileDevice">
+  <div class="content">
+    <img src="assets/img/utfpr-logo.svg" alt="Logo UTFPR" width="200px">
+    <strong style="margin: 8px 0;">UNIVERSIDADE TECNOLÓGICA FEDERAL DO PARANÁ</strong>
+    <p>Av. Sete de Setembro, 3165 Rebouças</p>
+    <p>80230-901 Curitiba PR Brasil 🇧🇷</p>
+    <p>+55 &#40;41&#41; 3310-4545</p>
+  </div>
+</footer>
+

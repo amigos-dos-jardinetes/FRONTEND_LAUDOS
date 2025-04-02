@@ -1,0 +1,31 @@
+<app-header></app-header>
+<main *ngIf="!loading; else loadingTemplate">
+  <h1>Bens no arquivo</h1>
+
+  <div style="margin-bottom: 32px;" *ngIf="assets && assets.length > 0; else noAssets">
+    <div *ngFor="let asset of assets" style="margin-top: 24px;">
+      <app-asset-info-card
+        [asset]="asset"
+        (assetClicked)="goToAsset($event)">
+      </app-asset-info-card>
+    </div>
+  </div>
+
+  <button class="secondary button-margin" *ngIf="assets.length > 0 && areAllAssetsComplete()" type="button" (click)="handleAddAsset()">
+    Adicionar bem
+  </button>
+  <button [ngClass]="isMobileDevice ? 'primary mobile' : 'primary'" type="button" (click)="handleAssetAction()">
+    {{ assets.length > 0 && areAllAssetsComplete() ? 'Gerar arquivo' : 'Continuar geração' }}
+  </button>
+</main>
+<app-footer></app-footer>
+
+<ng-template #noAssets>
+  <p style="text-align: center; margin: 16px 0;">Esse arquivo ainda não tem nenhum bem associado. Continue a geração e adicione novos bens.</p>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <main class="loading-container">
+    <img src="assets/img/load.gif" alt="Carregando" width="64px" height="64px">
+  </main>
+</ng-template>
