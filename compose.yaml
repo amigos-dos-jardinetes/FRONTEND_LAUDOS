@@ -1,8 +1,8 @@
-name: laudos-ocr
+name: frontend
 
 services:
   jardinetes:
-    container_name: laudos-ct
+    container_name: laudos-${COMPOSE_PROJECT_NAME}
     image: "${COMPOSE_PROJECT_NAME}:node-${NODE_VERSION}"
     build:
       context: .

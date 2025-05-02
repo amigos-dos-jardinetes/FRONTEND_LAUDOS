@@ -24,9 +24,9 @@ export NODE_VERSION
 docker compose -p ${PROJECT} build
 
 # executa o contêiner e copia os arquivos para o bucket S3
-docker compose up -d
+docker compose -p ${PROJECT} up -d
 rm -rf ./dist
-docker cp laudos-ct:/usr/share/nginx/html ./dist
-docker compose down
+docker cp laudos-${PROJECT}:/usr/share/nginx/html ./dist
+docker compose -p ${PROJECT} down
 aws s3 rm s3://${S3_BUCKET} --recursive
 aws s3 cp ./dist/ s3://${S3_BUCKET}/ --recursive
