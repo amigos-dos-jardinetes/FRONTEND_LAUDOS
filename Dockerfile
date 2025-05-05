@@ -1,4 +1,7 @@
-FROM node:20.11.0 as build
+# Usa a versão mais recente, caso não seja especificada
+ARG NODE_VERSION=latest
+
+FROM node:${NODE_VERSION} AS build
 
 WORKDIR /app
 

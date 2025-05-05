@@ -1,5 +1,5 @@
 export const environment = {
-  baseUrl: 'https://backend.gabriellinke.dev.br',
-  keycloakIssuerUri: "https://auth.gabriellinke.dev.br/realms/laudos",
-  clientId: "laudos"
+  baseUrl: "https://laudos-backend.ct.utfpr.edu.br",
+  keycloakIssuerUri: "https://sso.ct.utfpr.edu.br/realms/UTFPR",
+  clientId: "utfpr-ct-dirge-laudos"
 };
